@@ -1,27 +1,9 @@
 <?php
 
-
-    Route::get('/', function () {
-        return view('index');
-    })->name('tela-index');
-    
-    
-    Route::get('/index', function () {
-        return view('index');
-    });
-    
-    Route::get('/cadastro', function () {
-        return view('cadastro');
-    })->name('tela-cadastro');
-    
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('tela-dashboard');
-    
-    Route::get('/pesquisa', function () {
-        return view('pesquisa');
-    })->name('tela-pesquisa');
-    
-    Route::get('/login', function () {
-        return view('login');
-    })->name('tela-login');
+        
+    Route::get('/index', 'ProdutoController@index');
+    //Route::get('/index', 'ProdutoController@index');
+    Route::get('/cadastro', 'ProdutoController@cadastro');
+    Route::get('/dashboard', 'ProdutoController@dashboard');
+    Route::get('/pesquisa', 'ProdutoController@pesquisa');
+    Route::get('/login', 'ProdutoController@login');
