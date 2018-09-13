@@ -17,7 +17,7 @@ class ProdutoController extends Controller
     public function index(){
         return view('index');
     }
-
+    
     public function cadastro(){
         return view('cadastro');
     }
@@ -30,7 +30,12 @@ class ProdutoController extends Controller
     }
 
     public function dashboard(){
-        return view('dashboard');
+        
+        $produtos = $this->produto->all();
+        
+        $categorias = $this->produto->only('grupo');
+        
+        return view('dashboard',compact('produtos','categorias'));
     }
 
     public function login(){
@@ -64,7 +69,7 @@ class ProdutoController extends Controller
         $salvo = $this->produto->create($produtoPraSerSalvo);
 
         if($salvo){
-            return redirect('cadastro'); //falta a mensagem de confirmação
+            return redirect('cadastro'); //falta a mensagem de confirma��o
         }else{
             return view('index');
         }

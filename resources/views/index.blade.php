@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>SA-Consultoria</title>
 
+  <link rel="shortcut icon" href="../resources/views/img/reparation.jpg" />
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="../resources/views/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
