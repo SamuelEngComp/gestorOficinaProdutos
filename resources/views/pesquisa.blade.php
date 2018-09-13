@@ -44,11 +44,12 @@
        <div class="col s8">
             <a class="waves-effect light-blue btn-small" href="cadastro">Novo</a> 
        </div>
-       <div class="col s4">
-            <input type="text" placeholder="Pesquisar" id="myInput">
-        </div>
+
+      <div class="active-cyan-3 active-cyan-4 col s4">
+            <input type="text" placeholder="Pesquisar..." id="myInput">
+      </div>
    </div>
-  <table class="responsive-table centered">
+  <table class="striped centered">
         <thead>
           <tr>
               <th>ID</th>
@@ -62,18 +63,24 @@
         </thead>
 
         <tbody id="myTable">
+          @foreach($produtos as $produto)
           <tr>
-            <td>1</td>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-            <td>$0.87</td> 
-            <td>Eclair</td>
+            <td>{{$produto->id}}</td>
+            <td>{{$produto->descricao}}</td>
+            <td>{{$produto->referencia}}</td>
+            <td>R$ {{$produto->preco_custo}}</td>
+            <td>R$ {{$produto->preco_venda}}</td> 
+            <td>{{$produto->grupo}}</td>
             <td>
-            <a class="waves-effect light-blue btn-small">Editar</a>
-            <a class="waves-effect red accent-4 btn-small">Excluir</a>
+              <a class="waves-effect light-blue btn-small btn tooltipped" data-position="top" data-tooltip="Editar">
+                <i class="material-icons">edit</i> 
+              </a>
+              <a class="waves-effect red accent-4 btn-small btn tooltipped" data-position="top" data-tooltip="Excluir">
+                <i class="material-icons">remove</i> 
+              </a>
             </td> 
-        </tr>
+          </tr>
+          @endforeach
         </tbody>
       </table>
 
@@ -83,11 +90,6 @@
 </div>
   </div>
 
-    
-    
-  
-
-
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="../resources/views/js/materialize.js"></script>
@@ -95,19 +97,26 @@
 
     <script>
         $(document).ready(function(){
-    $('select').formSelect();
-  });
+          $('select').formSelect();
+        });
     </script>
 
     <script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
+      $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+          
+              $("#myTable tr").filter(function() {
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+              });
+          });
+      });
 </script>
+
+      <script>
+            $(document).ready(function(){
+              $('.tooltipped').tooltip();
+            });
+      </script>
   </body>
 </html>

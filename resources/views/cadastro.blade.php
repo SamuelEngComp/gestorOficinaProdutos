@@ -42,45 +42,54 @@
     <div class="section">
 
       <div class="row">
-        <form class="col s12">
+        
+      @if(isset($errors) && count($errors) > 0)
+        <div class ="alert alert-danger">
+            @foreach($errors->all() as $error)
+                <p>{{$error}}</p>
+            @endforeach
+        </div>
+      @endif
+        <form class="col s12" method="post" action="salvar">
+            {!!csrf_field()!!}
         <div class="row">
             <div class="input-field col s12">
-                <input id="descricao" type="text" class="validate">
+                <input id="descricao" type="text" class="validate" name="descricao" value="{{old('descricao')}}">
                 <label for="descricao">Descrição</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
-                <input id="referencia" type="text" class="validate">
+                <input id="referencia" type="text" class="validate" name="referencia" value="{{old('referencia')}}">
                 <label for="referencia">Referência</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s4">
-                <input id="preco_custo" type="number" class="validate">
+                <input id="preco_custo" type="number" class="validate" name="preco_custo" value="{{old('preco_custo')}}">
                 <label for="preco_custo">Preço de custo</label>
             </div>
 
             <div class="input-field col s4">
-                <input id="preco_venda" type="number" class="validate">
+                <input id="preco_venda" type="number" class="validate" name="preco_venda" value="{{old('preco_venda')}}">
                 <label for="preco_venda">Preço de venda</label>
             </div>
 
             <div class="input-field col s4">
                 <select name="grupo">
                     <option value="" disabled selected>Selecione o grupo</option>
-                    <option value="1">Acessórios</option>
-                    <option value="2">Moto</option>
-                    <option value="3">Veículo</option>
+                        <option value="Acessorios">Acessorios</option>
+                        <option value="Moto">Moto</option>
+                        <option value="Veiculo">Veiculo</option>
                 </select>
                 <label>Grupo</label>
             </div>
         </div>
 
         
-            <button class="btn waves-effect light-blue" type="submit" name="action">Enviar
+            <button class="btn waves-effect light-blue" type="submit">Enviar
                 <i class="material-icons right">send</i>
             </button>
 
