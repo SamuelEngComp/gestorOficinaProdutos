@@ -14,13 +14,6 @@ class Produto extends Model
     //lista negra -- ou seja, são campos que podem ou não ser preenchidos pelo usuário
     //protected $guarded = [];
 
-    public $rules = [
-        'descricao'=>'required|min:10|max:150',
-        'referencia'=>'required|min:10|max:150',
-        'preco_custo'=>'required|numeric',
-        'preco_venda'=>'required|numeric',
-        'grupo'=>'required'
-    ];
 
 
     

@@ -74,7 +74,8 @@
             <td>R$ {{$produto->preco_venda}}</td> 
             <td>{{$produto->grupo}}</td>
             <td>
-              <a class="waves-effect light-blue btn-small btn tooltipped" data-position="top" data-tooltip="Editar">
+              <a class="waves-effect light-blue btn-small btn tooltipped" data-position="top" data-tooltip="Editar"
+              	href="editar/{{{$produto->id}}}">
                 <i class="material-icons">edit</i> 
               </a>
               <a class="waves-effect red accent-4 btn-small btn tooltipped" data-position="top" data-tooltip="Excluir">

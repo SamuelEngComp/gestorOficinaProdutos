@@ -56,35 +56,35 @@
             {!!csrf_field()!!}
         <div class="row">
             <div class="input-field col s12">
-                <input id="descricao" type="text" class="validate" name="descricao" value="{{old('descricao')}}">
+                <input id="descricao" type="text" class="validate" name="descricao" value="{{$produto->descricao or old('descricao')}}">
                 <label for="descricao">Descrição</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
-                <input id="referencia" type="text" class="validate" name="referencia" value="{{old('referencia')}}">
+                <input id="referencia" type="text" class="validate" name="referencia" value="{{$produto->referencia or old('referencia')}}">
                 <label for="referencia">Referência</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s4">
-                <input id="preco_custo" type="number" class="validate" name="preco_custo" value="{{old('preco_custo')}}">
+                <input id="preco_custo" type="number" class="validate" name="preco_custo" value="{{$produto->preco_custo or old('preco_custo')}}">
                 <label for="preco_custo">Preço de custo</label>
             </div>
 
             <div class="input-field col s4">
-                <input id="preco_venda" type="number" class="validate" name="preco_venda" value="{{old('preco_venda')}}">
+                <input id="preco_venda" type="number" class="validate" name="preco_venda" value="{{$produto->preco_venda or old('preco_venda')}}">
                 <label for="preco_venda">Preço de venda</label>
             </div>
 
             <div class="input-field col s4">
                 <select name="grupo">
                     <option value="" disabled selected>Selecione o grupo</option>
-                        <option value="Acessorios">Acessorios</option>
-                        <option value="Moto">Moto</option>
-                        <option value="Veiculo">Veiculo</option>
+                    @foreach($categorias as $categoria)
+                        <option value="{{$categoria}}">{{$categoria}}</option>
+                    @endforeach
                 </select>
                 <label>Grupo</label>
             </div>

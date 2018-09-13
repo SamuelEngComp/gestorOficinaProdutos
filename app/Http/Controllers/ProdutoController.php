@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Produto;
 
+use App\Http\Requests\ProdutoFormRequest;
+
 class ProdutoController extends Controller
 {
     private $produto;
@@ -14,14 +16,22 @@ class ProdutoController extends Controller
         $this->produto = $produto;
     }
 
+    //apenas chamando as views
     public function index(){
         return view('index');
     }
     
+    //apenas chamando as views
     public function cadastro(){
-        return view('cadastro');
+        
+        $categorias = ['Acessorios','Moto','Veiculo'];
+        
+        return view('cadastro',compact('categorias'));
     }
 
+    
+    
+    //listando os produtos do banco e enviando pra view
     public function pesquisa(){
 
         $produtos = $this->produto->all();
@@ -29,50 +39,57 @@ class ProdutoController extends Controller
         return view('pesquisa',compact('produtos'));
     }
 
+    
+    //exibindo um dashboard gambiarra
     public function dashboard(){
         
         $produtos = $this->produto->all();
         
-        $categorias = $this->produto->only('grupo');
-        
-        return view('dashboard',compact('produtos','categorias'));
+        return view('dashboard',compact('produtos'));
     }
 
+    
+    //apenas chamando as views
     public function login(){
         return view('login');
     }
 
     //inserindo no banco
-    public function salvar(Request $request){
+    public function salvar(ProdutoFormRequest $request){
 
         $produtoPraSerSalvo = $request->all();
-
-        //mensagens
-        $mensagens = [
-            'descricao.required'=>'O campo descrição é obrigatório',
-            'descricao.min'=>'O campo descrição tem que ter no mín 10 e max 150 caracteres',
-            'descricao.max'=>'O campo descrição tem que ter no mín 10 e max 150 caracteres',
-            
-            'referencia.required'=>'O campo referencia é obrigatório',
-            'referencia.min'=>'O campo referencia tem que ter no mín 10 e max 150 caracteres',
-            'referencia.max'=>'O campo referencia tem que ter no mín 10 e max 150 caracteres',
-
-            'preco_custo.required'=>'O campo preço é obrigatório',
-            'preco_venda.required'=>'O campo preço é obrigatório',
-
-            'grupo.required'=>'Selecione um grupo',
-        ];
-
-        //validando os dados do form
-        $this->validate($request,$this->produto->rules,$mensagens);
 
         $salvo = $this->produto->create($produtoPraSerSalvo);
 
         if($salvo){
-            return redirect('cadastro'); //falta a mensagem de confirma��o
+            return redirect('cadastro'); //falta a mensagem de confirmação
         }else{
             return view('index');
         }
     }
+    
+    
+    //editando
+    public function editar($id) {
+        //$produtoEditar = $this->produto->find($id);
+        
+        //return view('cadastro',compact('produtoEditar'));
+        
+        return "Editando ... {$id}";
+    }
+    
+    //removendo
+    public function remover() {
+        
+    }
+    
+ 
 
 }
+
+
+
+
+
+
+
